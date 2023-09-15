@@ -17,6 +17,7 @@ namespace AzureFileUploader.BL.Services
         public AzureEmailService(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("AzureFileStorage")!;
+            _senderEmail = configuration["AzureSenderEmail"]!;
         }
         public async Task SendEmailAsync(string emailRecipient, string emailSubject, string emailMessageText)
         {
