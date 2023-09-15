@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFileUploader", "AzureFileUploader\AzureFileUploader.csproj", "{285A67F0-23E9-4E6D-A846-7137C6F3EC1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFileUploader", "AzureFileUploader\AzureFileUploader.csproj", "{285A67F0-23E9-4E6D-A846-7137C6F3EC1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureFileUploader.BL", "AzureFileUploader.BL\AzureFileUploader.BL.csproj", "{618085A1-950A-4B85-A324-A597FFF97725}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFileUploader.BL", "AzureFileUploader.BL\AzureFileUploader.BL.csproj", "{618085A1-950A-4B85-A324-A597FFF97725}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

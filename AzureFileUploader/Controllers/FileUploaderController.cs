@@ -20,7 +20,7 @@ namespace AzureFileUploader.Controllers
         {
             if (fileModel == null || Path.GetExtension(fileModel.File.FileName) != ".docx")
                return BadRequest("Wrong file input");
-            await _fileUploader.UploadFile(fileModel);
+            await _fileUploader.UploadFileAsync(fileModel);
             return Ok();
         }
     }

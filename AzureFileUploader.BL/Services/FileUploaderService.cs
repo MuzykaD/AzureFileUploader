@@ -16,7 +16,7 @@ namespace AzureFileUploader.BL.Services
         {
             _blobServiceClient = blobClient;    
         }
-        public async Task UploadFile(FileModel fileModel)
+        public async Task UploadFileAsync(FileModel fileModel)
         {
             var container = _blobServiceClient.GetBlobContainerClient("uploadedfiles");
 
