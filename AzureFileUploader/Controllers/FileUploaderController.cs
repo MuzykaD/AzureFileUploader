@@ -15,10 +15,10 @@ namespace AzureFileUploader.Controllers
         }
 
         [HttpPost]
-        [Route("/upload-file")]
+        [Route("/api/v1/upload-file")]
         public async Task<IActionResult> UploadFile([FromForm]FileModel fileModel)
         {
-            if (fileModel == null)
+            if (fileModel == null || Path.GetExtension(fileModel.File.FileName) != ".docx")
                return BadRequest("Wrong file input");
             await _fileUploader.UploadFile(fileModel);
             return Ok();
