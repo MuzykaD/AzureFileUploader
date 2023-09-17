@@ -17,19 +17,26 @@ namespace EmailBlobTrigger
         private IEmailSender _emailSender;
         private IEmailMessageCreator _emailMessageCreator;
 
-        public EmailTrigger(IEmailSender emailSender, IEmailMessageCreator emailMessageCreator)
+        public EmailTrigger()
         {
-            _emailSender = emailSender;
-            _emailMessageCreator = emailMessageCreator;
+            _emailSender = new AzureEmailSender();
+            _emailMessageCreator = new AzureEmailMessageCreator();
         }
 
         [FunctionName("EmailTriggerFunction")]
-        public async Task Run([BlobTrigger("uploadedfiles/{name}", Connection = "AzureBlobStorageKey")] IDictionary<string, string> metadata)
+        public async Task Run([BlobTrigger("uploadedfiles/{name}", Connection = "AzureBlobStorageKey")] Stream myBlob, string name, ILogger log, IDictionary<string, string> metadata)
         {
-            var message = _emailMessageCreator.CreateEmailMessage(metadata["email"],
-                                                                 $"Document added: {metadata["filename"]}",
-                                                                 metadata["sasToken"]);
-            await _emailSender.SendEmailAsync(message);
+            if (metadata.TryGetValue("email", out string userEmail) 
+                && metadata.TryGetValue("filename", out string filename) 
+                && metadata.TryGetValue("sasToken", out string sasToken))
+            {
+                var message = _emailMessageCreator.CreateEmailMessage(userEmail,
+                                                                     $"Document added: {filename}",
+                                                                     sasToken);
+                await _emailSender.SendEmailAsync(message);
+            }
+            else
+                log.LogError("Empty data provided");
         }
     }
 }

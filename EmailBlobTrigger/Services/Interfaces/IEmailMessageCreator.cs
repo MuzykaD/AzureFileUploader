@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmailBlobTrigger.Services.Interfaces
 {
-    internal interface IEmailMessageCreator
+    public interface IEmailMessageCreator
     {
         public EmailMessage CreateEmailMessage(string recipientEmail, string subject, string content);
     }

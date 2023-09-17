@@ -11,9 +11,9 @@ namespace EmailBlobTrigger.Services
     public class AzureEmailMessageCreator : IEmailMessageCreator
     {
         IHtmlResponseGenerator _htmlResponseGenerator;
-        public AzureEmailMessageCreator(IHtmlResponseGenerator htmlResponseGenerator)
+        public AzureEmailMessageCreator()
         {
-            _htmlResponseGenerator = htmlResponseGenerator;
+            _htmlResponseGenerator = new EmailHtmlResponseGenerator();
         }
         public EmailMessage CreateEmailMessage(string recipientEmail, string subject, string content)
         {
@@ -26,8 +26,8 @@ namespace EmailBlobTrigger.Services
             {
                 new(recipientEmail)
             });
-
-            return new EmailMessage("DoNotReply@2bc741dc-e3c2-478a-83aa-ba2109f7386c.azurecomm.net", recipients, emailContent);
+            var address = Environment.GetEnvironmentVariable("SenderAddress");
+            return new EmailMessage(address, recipients, emailContent);
         }
 
        

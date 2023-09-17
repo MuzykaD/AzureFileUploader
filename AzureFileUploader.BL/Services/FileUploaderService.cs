@@ -25,7 +25,7 @@ namespace AzureFileUploader.BL.Services
             var blob = container.GetBlobClient(fileModel.File.FileName);
 
             var start = DateTimeOffset.UtcNow;
-            var end = start.AddHours(1);
+            var end = start.AddMinutes(3);
 
             var sasBuilder = new BlobSasBuilder(BlobContainerSasPermissions.Read, end)
             {
