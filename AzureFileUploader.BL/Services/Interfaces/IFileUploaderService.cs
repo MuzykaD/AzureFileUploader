@@ -10,6 +10,6 @@ namespace AzureFileUploader.BL.Services.Interfaces
     
     public interface IFileUploaderService
     {
-        Task UploadFile(FileModel fileModel);
+        Task UploadFileAsync(FileModel fileModel);
     }
 }
