@@ -11,9 +11,9 @@ namespace EmailBlobTrigger.Services
     public class AzureEmailMessageCreator : IEmailMessageCreator
     {
         IHtmlResponseGenerator _htmlResponseGenerator;
-        public AzureEmailMessageCreator()
+        public AzureEmailMessageCreator(IHtmlResponseGenerator genertor)
         {
-            _htmlResponseGenerator = new EmailHtmlResponseGenerator();
+            _htmlResponseGenerator = genertor;
         }
         public EmailMessage CreateEmailMessage(string recipientEmail, string subject, string content)
         {

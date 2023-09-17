@@ -16,11 +16,10 @@ namespace EmailBlobTrigger
     {
         private IEmailSender _emailSender;
         private IEmailMessageCreator _emailMessageCreator;
-
-        public EmailTrigger()
+        public EmailTrigger(IEmailSender sender, IEmailMessageCreator creator)
         {
-            _emailSender = new AzureEmailSender();
-            _emailMessageCreator = new AzureEmailMessageCreator();
+            _emailSender = sender;
+            _emailMessageCreator = creator;
         }
 
         [FunctionName("EmailTriggerFunction")]
