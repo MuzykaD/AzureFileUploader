@@ -24,7 +24,7 @@ namespace EmailBlobTrigger
         }
 
         [FunctionName("EmailTriggerFunction")]
-        public async Task Run([BlobTrigger("uploadedfiles/{name}", Connection = "AzureBlobStorageKey")]Stream myBlob, string name, ILogger log, IDictionary<string, string> metadata)
+        public async Task Run([BlobTrigger("uploadedfiles/{name}", Connection = "AzureBlobStorageKey")] IDictionary<string, string> metadata)
         {
             var message = _emailMessageCreator.CreateEmailMessage(metadata["email"],
                                                                  $"Document added: {metadata["filename"]}",
