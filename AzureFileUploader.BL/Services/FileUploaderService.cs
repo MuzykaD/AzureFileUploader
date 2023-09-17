@@ -24,14 +24,14 @@ namespace AzureFileUploader.BL.Services
 
             var blob = container.GetBlobClient(fileModel.File.FileName);
 
-            var start = DateTimeOffset.UtcNow;
-            var end = start.AddMinutes(3);
+            var startTime = DateTimeOffset.UtcNow;
+            var expireTime = startTime.AddHours(1);
 
-            var sasBuilder = new BlobSasBuilder(BlobContainerSasPermissions.Read, end)
+            var sasBuilder = new BlobSasBuilder(BlobContainerSasPermissions.Read, expireTime)
             {
                 BlobName = fileModel.File.FileName,
                 BlobContainerName = "uploadedfiles",
-                CacheControl = "max-age" + end
+                CacheControl = "max-age" + expireTime
             };
                     
             var dict = new Dictionary<string, string>()
