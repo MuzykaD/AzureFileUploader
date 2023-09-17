@@ -14,15 +14,22 @@ namespace EmailBlobTrigger
 {
     public class EmailTrigger
     {
-        private IEmailSender _emailSender = new AzureEmailSender();
-        private IHtmlResponseGenerator _htmlResponseGenerator => new EmailHtmlResponseGenerator();
-       
+        private IEmailSender _emailSender;
+        private IEmailMessageCreator _emailMessageCreator;
+
+        public EmailTrigger(IEmailSender emailSender, IEmailMessageCreator emailMessageCreator)
+        {
+            _emailSender = emailSender;
+            _emailMessageCreator = emailMessageCreator;
+        }
+
         [FunctionName("EmailTriggerFunction")]
         public async Task Run([BlobTrigger("uploadedfiles/{name}", Connection = "AzureBlobStorageKey")]Stream myBlob, string name, ILogger log, IDictionary<string, string> metadata)
         {
-            await _emailSender.SendEmailAsync(metadata["email"], 
-                                             $"Document added: {metadata["filename"]}", 
-                                             _htmlResponseGenerator.GenerateHtmlResponse(metadata["sasToken"]));
+            var message = _emailMessageCreator.CreateEmailMessage(metadata["email"],
+                                                                 $"Document added: {metadata["filename"]}",
+                                                                 metadata["sasToken"]);
+            await _emailSender.SendEmailAsync(message);
         }
     }
 }

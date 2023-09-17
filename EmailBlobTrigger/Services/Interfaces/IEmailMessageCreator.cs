@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace EmailBlobTrigger.Services.Interfaces
 {
-    public interface IEmailSender
+    internal interface IEmailMessageCreator
     {
-        Task SendEmailAsync(EmailMessage message);
+        public EmailMessage CreateEmailMessage(string recipientEmail, string subject, string content);
     }
 }

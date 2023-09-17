@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmailBlobTrigger.Services.Interfaces
 {
-    internal interface IHtmlResponseGenerator
+    public interface IHtmlResponseGenerator
     {
         string GenerateHtmlResponse(string message);
     }
