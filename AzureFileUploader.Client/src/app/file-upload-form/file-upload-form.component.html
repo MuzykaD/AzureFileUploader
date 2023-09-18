@@ -1,0 +1,42 @@
+<!-- file-upload-form.component.html -->
+<header>
+ <h1 class="centerHeader">File uploader</h1>
+</header>
+<div class="container">
+   
+    
+    <div class="form-wrapper">
+      <h2 class="form-title">Upload .docx File and Enter Email</h2>          
+      <form (ngSubmit)="onSubmit()" #fileUploadForm="ngForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              [(ngModel)]="formData.email"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="file" class="form-label">Select file:</label>
+            <input
+              type="file"
+              class="form-control"
+              id="file"
+              name="file"
+              (change)="onFileChange($event)"
+              accept=".docx"
+              required
+            />
+          </div>
+        <button type="submit" class="btn btn-primary" [disabled]="isUploadButtonDisabled()">Upload</button>
+        <p [hidden] ="!isUploadButtonDisabled()">Values are not set correctly!</p>
+      </form>
+    </div>
+  </div>
+  
+  
+  

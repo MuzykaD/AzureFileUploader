@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/32a10317-9f6e-4935-acec-ee258984308b/resourceGroups/FileUploader/providers/Microsoft.Web/sites/muzykaFileUploaderClient",
+    "appService.deploySubpath": "."
+}
