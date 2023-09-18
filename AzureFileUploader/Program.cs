@@ -1,4 +1,8 @@
 
+using Azure.Storage.Blobs;
+using AzureFileUploader.BL.Services;
+using AzureFileUploader.BL.Services.Interfaces;
+
 namespace AzureFileUploader
 {
     public class Program
@@ -10,6 +14,11 @@ namespace AzureFileUploader
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped(_ =>
+            {
+                return new BlobServiceClient(builder.Configuration.GetConnectionString("AzureFileStorage"));
+            });
+            builder.Services.AddTransient<IFileUploaderService, FileUploaderService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
