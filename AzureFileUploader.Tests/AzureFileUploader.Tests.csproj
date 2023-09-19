@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AzureFileUploader.BL\AzureFileUploader.BL.csproj" />
+    <ProjectReference Include="..\AzureFileUploader\AzureFileUploader.csproj" />
     <ProjectReference Include="..\EmailBlobTrigger\EmailBlobTrigger.csproj" />
   </ItemGroup>
 
