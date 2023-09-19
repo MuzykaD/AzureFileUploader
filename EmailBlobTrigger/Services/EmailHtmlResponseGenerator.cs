@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmailBlobTrigger.Services
 {
-    internal class EmailHtmlResponseGenerator : IHtmlResponseGenerator
+    public class EmailHtmlResponseGenerator : IHtmlResponseGenerator
     {
         public string GenerateHtmlResponse(string message)
         {

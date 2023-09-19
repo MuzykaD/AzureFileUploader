@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace EmailBlobTrigger.Services
 {
-    internal class AzureEmailSender : IEmailSender
+    public class AzureEmailSender : IEmailSender
     {
         public async Task SendEmailAsync(EmailMessage message)
         {
             var clientConnectionString = Environment.GetEnvironmentVariable("ClientConnectionString");
             var emailClient = new EmailClient(clientConnectionString);
-           
+
             await emailClient.SendAsync(Azure.WaitUntil.Completed, message);
         }
     }
